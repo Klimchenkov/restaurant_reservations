@@ -10,7 +10,6 @@ POSTGRES_PORT = os.environ['POSTGRES_PORT']
 POSTGRES_SUB_DB = os.environ['POSTGRES_DB']
 
 postgres_url =  f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_SUB_DB}'
-
 engine = create_engine(postgres_url)
 
 Base = declarative_base()

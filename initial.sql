@@ -50,7 +50,7 @@ CREATE FUNCTION reservations_check() RETURNS trigger AS $reservations_check$
        	if new.end_time > (select r.time_closed from restaurants as r join "tables" as t on t.restaurant_id = r.id where t.id = new.table_id) THEN
  			RAISE EXCEPTION 'Reservation end time cannot be later than restaurant opening hours!';
         END IF;
-       	if exists(select * from reservations r where r.table_id=new.table_id and r.date=new.date and new.start_time<=r.end_time and r.start_time <= new.end_time) then
+       	if exists(select * from reservations r where r.table_id=new.table_id and r.date=new.date and new.start_time<=r.end_time and r.start_time <= new.end_time and r.id != new.id) then
 			raise exception 'This time is already reserved by another client!';
        	end if;
        	RETURN NEW;
