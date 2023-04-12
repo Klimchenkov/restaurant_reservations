@@ -10,6 +10,7 @@ POSTGRES_PORT = os.environ['POSTGRES_PORT']
 POSTGRES_SUB_DB = os.environ['POSTGRES_DB']
 
 postgres_url =  f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_SUB_DB}'
+
 engine = create_engine(postgres_url)
 
 Base = declarative_base()
@@ -28,7 +29,7 @@ class Restaurants(Base):
     
     id = Column(Integer, Identity(), primary_key=True, nullable=False)
     address = Column(String(50), nullable=False) 
-    phone = Column(String(15), nullable=False)
+    phone = Column(String(30), nullable=False)
     email = Column(String(50), nullable=False)
     time_open = Column(Time, nullable=False)
     time_closed = Column(Time, nullable=False)
